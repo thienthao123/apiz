@@ -1,0 +1,21 @@
+<% include ./header.ejs %>
+
+<uif-list>
+  <uif-list-item ng-repeat="ghichu in danhdaus" uif-unread="{{ghichu.danhdau}}" uif-item="ghichu">
+    <uif-list-item-image>
+      <img ng-src="https://yt3.ggpht.com/-jgtUvewPpIA/AAAAAAAAAAI/AAAAAAAAAAA/hdbZdA-rxIg/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" style="width: 100%" />
+    </uif-list-item-image>
+    <uif-list-item-secondary-text ng-click="redirect(ghichu.ghichu)">{{ghichu.ghichu}}</uif-list-item-secondary-text>
+          <uif-list-item-tertiary-text>{{daxem}}</uif-list-item-tertiary-text>
+
+    <uif-list-item-meta-text>{{ghichu.date}}</uif-list-item-meta-text>
+    <uif-list-item-selection-target></uif-list-item-selection-target>
+    <uif-list-item-actions>
+      <uif-list-item-action ng-click="delete(ghichu._id)" data="ghichu._id">
+        <uif-icon uif-type="trash"></uif-icon>
+      </uif-list-item-action>
+    </uif-list-item-actions>
+  </uif-list-item>
+</uif-list>
+
+<% include ./footer.ejs%>

@@ -16,7 +16,8 @@ app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location'
   	socket.emit('seach',data)
   }
   $scope.redirect = function(url){
-  		$window.location.href= url
+    $window.open(url, '_blank');
+  		//$window.location.href= url
   }
   $scope.save = function(){
       var url = $scope.link

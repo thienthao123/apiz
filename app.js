@@ -145,5 +145,7 @@ app.get('/add', function(req, res) {
     res.render('add')
 })
 
-
-server.listen(process.env.PORT || '3000')
+var port = process.env.PORT || 3000
+server.listen(port, function() {
+    console.log("App is running on port " + port);
+});

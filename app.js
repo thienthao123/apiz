@@ -12,16 +12,6 @@ app.use(express.static('./public'))
 app.use(session({
     secret: 'aaaaaaaaaaaaaaaaa'
 }))
-
-var daxem = function(req, res, next) {
-    if (req.session.daxem) {
-        next()
-    } else {
-        req.session.daxem = []
-        next()
-    }
-}
-
 var ngay = new Date().toISOString().
 replace(/T/, ' '). // replace T with a space
 replace(/\..+/, '');

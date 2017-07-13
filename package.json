@@ -1,12 +1,14 @@
 {
-  "name": "react",
+  "name": "apiz",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "dthie"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -18,7 +20,6 @@
     "http": "0.0.0",
     "mongoose": "^4.11.1",
     "mongoose-auto-increment": "^5.0.1",
-    "mongoose-text-search": "0.0.2",
     "ng-office-ui-fabric": "^0.15.3",
     "pathname": "^0.9.0",
     "request": "^2.81.0",

@@ -18,7 +18,7 @@ replace(/\..+/, '');
 io.on("connection", function(socket) {
 
     socket.on('save', function(data) {
-        var xvideo = data.url.seach('xvideos') 
+        var xvideo = data.url.seach('xvideos')
         if(xvideo){
             request.get('http://apiz.jav0.xyz/api.php?hinh=' + data.url, function(err, respose, body) {
                 var hinh = JSON.parse(body).hinh
@@ -126,6 +126,34 @@ io.on("connection", function(socket) {
         }
 
     })
+
+    /* API Mobile */
+    socket.on('IOS:videoId',function(id){
+      Ghichu.findById(id,function(err,doc){
+        socket.emit('IOS:videoId',doc)
+      })
+    })
+
+    socket.on('danhdauAdd',function(id){
+        Ghichu.findOneAndUpdate({_id:id},{$set:{danhdau : true}},function(err,result){
+            if(err){
+                socket.emit('err',err)
+            }
+            
+        })
+    })
+    socket.on('IOS:danhdau',function(){
+        Ghichu.find({
+            danhdau: true
+        }, function(err, docs) {
+            if (err) {
+                socket.emit('err', err)
+            }
+            socket.emit('IOS:danhdau', docs)
+        })
+    })
+
+
 })
 app.get('/', function(req, res) {
 

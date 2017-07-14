@@ -1,5 +1,8 @@
 var express = require('express')
-var session = require("express-session")
+var session = require("express-session")({
+    secret: "my-secret"
+  }),
+  sharedsession = require("express-socket.io-session");
 var app = express()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
@@ -9,12 +12,11 @@ var request = require('request');
 app.set('views', './views')
 app.set('view engine', 'ejs')
 app.use(express.static('./public'))
-app.use(session({
-    secret: 'aaaaaaaaaaaaaaaaa'
-}))
+app.use(session);
 var ngay = new Date().toISOString().
 replace(/T/, ' '). // replace T with a space
 replace(/\..+/, '');
+io.use(sharedsession(session));
 io.on("connection", function(socket) {
 
     socket.on('save', function(data) {
@@ -151,6 +153,29 @@ io.on("connection", function(socket) {
             }
             socket.emit('IOS:danhdau', docs)
         })
+    })
+
+    socket.on('IOS:xemthem',function(id){
+        if(!socket.handshake.session.xemthem){
+            socket.handshake.session.xemthem = 0
+             socket.handshake.session.xemthem = Number(socket.handshake.session.xemthem + id)
+        console.log(socket.handshake.session.xemthem)
+        Ghichu.find({},function(err,docs){
+            console.log(docs)
+            socket.emit('IOS:list', docs)
+        }).limit(Number(socket.handshake.session.xemthem)).skip(Number(socket.handshake.session.xemthem - 50))
+        
+        }else{
+        socket.handshake.session.xemthem = Number(socket.handshake.session.xemthem + id)
+        console.log(socket.handshake.session.xemthem)
+        Ghichu.find({},function(err,docs){
+            console.log(docs)
+            socket.emit('IOS:list', docs)
+        }).limit(Number(socket.handshake.session.xemthem)).skip(Number(socket.handshake.session.xemthem - 50))
+        
+        }
+        
+       
     })
 
 

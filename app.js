@@ -115,7 +115,7 @@ io.on("connection", function(socket) {
             if (err) {
                 socket.emit('err', err)
             }
-            socket.emit('list', docs)
+            socket.emit('IOS:danhdau', docs)
         })
             }
             

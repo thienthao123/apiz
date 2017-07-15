@@ -108,6 +108,16 @@ io.on("connection", function(socket) {
             if(err){
                 socket.emit('err',err)
             }
+            if(result){
+                 Ghichu.find({
+            danhdau: true
+        }, function(err, docs) {
+            if (err) {
+                socket.emit('err', err)
+            }
+            socket.emit('list', docs)
+        })
+            }
             
         })
     })

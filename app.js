@@ -20,39 +20,7 @@ io.use(sharedsession(session));
 io.on("connection", function(socket) {
 
     socket.on('save', function(data) {
-        var xvideo = data.url.seach('xvideos')
-        if(xvideo){
-            request.get('http://apiz.jav0.xyz/api.php?hinh=' + data.url, function(err, respose, body) {
-                var hinh = JSON.parse(body).hinh
-                Ghichu.findOne({
-                    ghichu: data.url
-                }, function(err, doc) {
-                    if (err) {
-                        socket.emit('err', err)
-                    }
-                    if (!doc) {
-                        var ghichu = new Ghichu({
-                            ghichu: data.url,
-                            date: ngay,
-                            danhdau: data.danhdau,
-                            hinh: hinh
-                        })
-                        ghichu.save(function(err, result) {
-                            if (err) {
-                                socket.emit('err', err)
-                            }
-                            if (result) {
-
-                            }
-                        })
-                    }
-                    if (doc) {
-                        socket.emit('err', 'trung')
-                    }
-                })
-            })
-        } else {
-        	var hinh = null
+       
         	 Ghichu.findOne({
                     ghichu: data.url
                 }, function(err, doc) {
@@ -63,8 +31,7 @@ io.on("connection", function(socket) {
                         var ghichu = new Ghichu({
                             ghichu: data.url,
                             date: ngay,
-                            danhdau: data.danhdau,
-                            hinh: hinh
+                            danhdau: data.danhdau
                         })
                         ghichu.save(function(err, result) {
                             if (err) {
@@ -79,7 +46,7 @@ io.on("connection", function(socket) {
                         socket.emit('err', 'trung')
                     }
                 })
-        }
+        
 
 
     })

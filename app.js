@@ -96,6 +96,24 @@ io.on("connection", function(socket) {
         }
 
     })
+    socket.on('IOS:seach', function(key) {
+        if (Number(key)) {
+            Ghichu.find({
+                _id: key
+            }, function(err, docs) {
+                socket.emit('IOS:list', docs)
+            })
+        } else {
+            var searchQuery = new RegExp(key, 'i');
+            Ghichu.find({
+                ghichu: searchQuery
+            }, function(err, docs) {
+                socket.emit('IOS:list', docs)
+            })
+
+        }
+
+    })
 
     /* API Mobile */
     socket.on('IOS:videoId',function(id){

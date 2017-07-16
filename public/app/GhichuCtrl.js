@@ -40,6 +40,7 @@ app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location'
 
   socket.on('err',function(err){
     alert(err)
+    $scope.url = ""
   })
 
 

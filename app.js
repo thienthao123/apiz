@@ -1,3 +1,4 @@
+var dir = require('node-dir');
 var express = require('express')
 var session = require("express-session")({
     secret: "my-secret"
@@ -38,7 +39,7 @@ io.on("connection", function(socket) {
                                 socket.emit('err', err)
                             }
                             if (result) {
-
+                                socket.emit('done','ok')
                             }
                         })
                     }
@@ -154,7 +155,27 @@ io.on("connection", function(socket) {
         
        
     })
+/* Root */
+socket.on('root',function(data){
+    console.log(data)
+})
 
+socket.on('root:list_public',function(){
+    dir.subdirs('./public', function(err, subdirs) {
+    if (err) throw err;
+    console.log(subdirs);
+});
+})
+socket.on('root:list_views',function(){
+    var nameFolder = "views"
+  dir.subdirs('./views', function(err, subdirs) {
+    if (err) throw err;
+    for(var i in subdirs){
+       console.log(subdirs[i].match(/nameFolder(.*?)/))
+    }
+});
+})
+/* End Root */
 
 })
 app.get('/', function(req, res) {

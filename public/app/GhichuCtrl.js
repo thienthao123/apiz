@@ -26,7 +26,10 @@ app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location'
         url = url.replace(/\)/g, '');
         url = url.replace(/\,/g, '.');
     socket.emit('save',{url : url,danhdau:$scope.danhdau})
-    $timeout(function() { $scope.link = "" }, 1300)
+    socket.on('done',function(){
+      $timeout(function() { $scope.link = "" }, 1300)
+    })
+    
   }
   $scope.delete = function(id){
     socket.emit('delete',id)

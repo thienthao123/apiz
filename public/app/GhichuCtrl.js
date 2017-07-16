@@ -3,6 +3,9 @@ app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location'
   socket.on('list',function(data){
     $scope.ghichus = data
   })
+  $scope.clear = function(){
+    $scope.url = ""
+  }
   $scope.redirectEncode = function(){
     var url = $scope.link
         url = url.replace(/\s/g, '');

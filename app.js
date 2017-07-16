@@ -104,7 +104,7 @@ io.on("connection", function(socket) {
                 socket.emit('IOS:list', docs)
             })
         } else {
-            var searchQuery = new RegExp(key, 'i');
+            var searchQuery = new RegExp(key.toLowerCase(), 'i');
             Ghichu.find({
                 ghichu: searchQuery
             }, function(err, docs) {

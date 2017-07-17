@@ -156,7 +156,7 @@ io.on("connection", function(socket) {
             socket.handshake.session.xemthem = 0
              socket.handshake.session.xemthem = Number(socket.handshake.session.xemthem + id)
         console.log(socket.handshake.session.xemthem)
-        Ghichu.find({},function(err,docs){
+        Ghichu.find({},{$sort:{'_id':'desc'}},function(err,docs){
             console.log(docs)
             socket.emit('IOS:list', docs)
         }).limit(Number(socket.handshake.session.xemthem)).skip(Number(socket.handshake.session.xemthem - 50))
@@ -164,7 +164,7 @@ io.on("connection", function(socket) {
         }else{
         socket.handshake.session.xemthem = Number(socket.handshake.session.xemthem + id)
         console.log(socket.handshake.session.xemthem)
-        Ghichu.find({},function(err,docs){
+        Ghichu.find({},{$sort:{'_id':'desc'}},function(err,docs){
             console.log(docs)
             socket.emit('IOS:list', docs)
         }).limit(Number(socket.handshake.session.xemthem)).skip(Number(socket.handshake.session.xemthem - 50))

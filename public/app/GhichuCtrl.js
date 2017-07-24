@@ -1,7 +1,7 @@
 'use strict';
 app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location', function ($scope,$window,socket,$timeout,$location) {
   socket.on('list',function(data){
-    $scope.ghichus = data
+     $scope.videos = data
   })
   $scope.clear = function(){
     $scope.url = ""
@@ -16,7 +16,10 @@ app.controller('GhichuCtrl', ['$scope','$window','socket','$timeout','$location'
   }
 
   $scope.seachKey = function(data){
-  	socket.emit('seach',data)
+    if(data){
+        socket.emit('seach',data)
+    }
+    
   }
   $scope.redirect = function(url){
     $window.open(url, '_blank');

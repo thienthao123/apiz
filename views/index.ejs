@@ -1,16 +1,18 @@
 <% include ./header.ejs %>
-
-<uif-list>
-  <uif-list-item ng-repeat="ghichu in ghichus | orderBy:'-_id'" uif-item="ghichu">
+ <uif-textfield ng-model="key"> </uif-textfield>
+ <uif-button uif-type="primary" ng-click="danhdauList()">Đánh dấu</uif-button>
+ <uif-button uif-type="primary" ng-click="redirect('add')">Thêm!</uif-button>
+ <uif-button uif-type="primary" ng-click="seachKey(key)">Tìm</uif-button>
+ <uif-list>
+  <uif-list-item ng-repeat="video in videos" uif-item="video">
     <uif-list-item-image>
-      <img ng-src="{{ghichu.hinh}}" style="width: 100%" />
+    <img ng-src="{{video.hinh}}" style="width: 100%" /> 
     </uif-list-item-image>
-    <uif-list-item-secondary-text ng-click="redirect(ghichu.ghichu)">{{ghichu.ghichu}}</uif-list-item-secondary-text>
-    <uif-list-item-tertiary-text>{{ghichu._id}}|{{ghichu.danhdau}}</uif-list-item-tertiary-text>
-    <uif-list-item-meta-text>{{ghichu.date}}</uif-list-item-meta-text>
+    <uif-list-item-secondary-text ng-click="redirect(video.url)">{{video.url}}</uif-list-item-secondary-text>
+    <uif-list-item-tertiary-text>{{video._id}}|{{video.danhdau}}</uif-list-item-tertiary-text>
     <uif-list-item-selection-target></uif-list-item-selection-target>
     <uif-list-item-actions>
-      <uif-list-item-action ng-click="delete(ghichu._id)" data="ghichu._id">
+      <uif-list-item-action ng-click="delete(video._id)" data="video._id">
         <uif-icon uif-type="trash"></uif-icon>
       </uif-list-item-action>
     </uif-list-item-actions>

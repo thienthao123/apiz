@@ -3,26 +3,21 @@
 <head>
   <title>GhiChu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/fabric.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/fabric.components.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script src="/app/azAppInsights.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/app/lib/angular.min.js"></script>
-  <script src="/app/lib/socket.js"></script>
-  <script src="/app/lib/angular-sanitize.min.js"></script>
-  <script src="/app/lib/angular-animate.min.js"></script>
-  <script src="/app/lib/ngOfficeUiFabric.min.js"></script>
-  <script src="/app/app.js"></script>
-  <script src="/app/GhichuCtrl.js"></script>
+  <style type="text/css">
+  <% include ../public/css/fabric.min.css %>
+  <% include ../public/css/fabric.components.min.css %>
+  <% include ../public/css/styles.css %>
+  </style>
+  <script>
+  <% include ../public/app/azAppInsights.js %>
+  <% include ../public/socket.io/socket.io.js %>
+  <% include ../public/app/lib/angular.min.js %>
+  <% include ../public/app/lib/socket.js %>
+  <% include ../public/app/lib/angular-sanitize.min.js %>
+  <% include ../public/app/lib/angular-animate.min.js %>
+  <% include ../public/app/lib/ngOfficeUiFabric.min.js %>
+  <% include ../public/app/app.js %>
+  <% include ../public/app/GhichuCtrl.js %>
+  </script>
 </head>
 <body  ng-controller="GhichuCtrl">
- <uif-nav-bar uif-overlay="dark"> 
-        <uif-nav-bar-item uif-text="'Trang Chủ'"></uif-nav-bar-item>
-        <uif-nav-bar-item uif-text="'Đánh dấu'" ng-click="danhdauList()"></uif-nav-bar-item>
-        <uif-nav-bar-item uif-position="right">
-         <uif-content ng-click="redirect('/add')"><uif-icon uif-type="upload"></uif-icon>Thêm</uif-link></uif-content>
-        </uif-nav-bar-item>
-        <uif-nav-bar-search placeholder="Tìm...." uif-on-search="seachKey(search)">
-        </uif-nav-bar-search>
-      </uif-nav-bar>

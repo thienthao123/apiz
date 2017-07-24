@@ -379,8 +379,8 @@ io.on("connection",(socket) => {
     socket.on("ios:danhdaulist",() => {
         Video.find({danhdau:true},(err,docs) => {
             socket.emit('ios:list',docs)
-        })
-    }).sort({'_id':'desc'})
+        }).sort({'_id':'desc'})
+    })
     socket.on('ios:list',() => {
         Video.find({},(err,docs) => {
         socket.emit('ios:list',docs)

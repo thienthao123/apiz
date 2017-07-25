@@ -30,7 +30,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('./public'))
 app.use(session);
 
-//app.use('/api',API)
+app.use('/api',API)
 io.use(sharedsession(session));
 /*
 var ngay = new Date().toISOString().

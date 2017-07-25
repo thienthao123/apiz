@@ -1,5 +1,7 @@
+var Video = require('../models/video')
+
 module.exports = (socket) => {
-	
+
     socket.on('save',(url) => {
         url = url.replace(/\s/g, '');
         url = url.replace(/\(/g, '');
